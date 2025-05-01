@@ -1,0 +1,338 @@
+{
+    "info": {
+      "_postman_id": "6b7f9d8c-4e5a-4c9a-a8d5-9f9d8d7f6e4f",
+      "name": "Task Manager API",
+      "description": "API for managing tasks in a task management application.",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Get All Tasks",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "{{baseUrl}}/tasks",
+            "host": ["{{baseUrl}}"],
+            "path": ["tasks"]
+          },
+          "description": "Retrieves all tasks from the database."
+        },
+        "response": [
+          {
+            "name": "Success",
+            "originalRequest": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/tasks",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks"]
+              }
+            },
+            "status": "OK",
+            "code": 200,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "[\n  {\n    \"id\": 1,\n    \"title\": \"Sample Task\",\n    \"description\": \"This is a sample task.\",\n    \"is_completed\": false,\n    \"created_at\": \"2025-05-01T12:00:00.000000Z\",\n    \"updated_at\": \"2025-05-01T12:00:00.000000Z\"\n  }\n]"
+          },
+          {
+            "name": "Server Error",
+            "originalRequest": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/tasks",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks"]
+              }
+            },
+            "status": "Internal Server Error",
+            "code": 500,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"error\": \"Failed to fetch tasks\"\n}"
+          }
+        ]
+      },
+      {
+        "name": "Create Task",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"title\": \"New Task\",\n  \"description\": \"Task description\",\n  \"is_completed\": false\n}"
+          },
+          "url": {
+            "raw": "{{baseUrl}}/tasks",
+            "host": ["{{baseUrl}}"],
+            "path": ["tasks"]
+          },
+          "description": "Creates a new task. Requires title (2-255 chars), description, and optional is_completed."
+        },
+        "response": [
+          {
+            "name": "Success",
+            "originalRequest": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"New Task\",\n  \"description\": \"Task description\",\n  \"is_completed\": false\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/tasks",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks"]
+              }
+            },
+            "status": "Created",
+            "code": 201,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"id\": 2,\n  \"title\": \"New Task\",\n  \"description\": \"Task description\",\n  \"is_completed\": false,\n  \"created_at\": \"2025-05-01T12:01:00.000000Z\",\n  \"updated_at\": \"2025-05-01T12:01:00.000000Z\"\n}"
+          },
+          {
+            "name": "Validation Error",
+            "originalRequest": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"\",\n  \"description\": \"\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/tasks",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks"]
+              }
+            },
+            "status": "Unprocessable Entity",
+            "code": 422,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"errors\": {\n    \"title\": [\"The title field is required.\"],\n    \"description\": [\"The description field is required.\"]\n  }\n}"
+          }
+        ]
+      },
+      {
+        "name": "Update Task",
+        "request": {
+          "method": "PUT",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated description\",\n  \"is_completed\": true\n}"
+          },
+          "url": {
+            "raw": "{{baseUrl}}/tasks/1",
+            "host": ["{{baseUrl}}"],
+            "path": ["tasks", "1"]
+          },
+          "description": "Updates an existing task by ID. Requires title (2-255 chars), description, and optional is_completed."
+        },
+        "response": [
+          {
+            "name": "Success",
+            "originalRequest": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated description\",\n  \"is_completed\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/tasks/1",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks", "1"]
+              }
+            },
+            "status": "OK",
+            "code": 200,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"id\": 1,\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated description\",\n  \"is_completed\": true,\n  \"created_at\": \"2025-05-01T12:00:00.000000Z\",\n  \"updated_at\": \"2025-05-01T12:02:00.000000Z\"\n}"
+          },
+          {
+            "name": "Not Found",
+            "originalRequest": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"Updated Task\",\n  \"description\": \"Updated description\",\n  \"is_completed\": true\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/tasks/999",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks", "999"]
+              }
+            },
+            "status": "Not Found",
+            "code": 404,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"error\": \"Task not found\"\n}"
+          },
+          {
+            "name": "Validation Error",
+            "originalRequest": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"A\",\n  \"description\": \"\"\n}"
+              },
+              "url": {
+                "raw": "{{baseUrl}}/tasks/1",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks", "1"]
+              }
+            },
+            "status": "Unprocessable Entity",
+            "code": 422,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"errors\": {\n    \"title\": [\"The title must be at least 2 characters.\"],\n    \"description\": [\"The description field is required.\"]\n  }\n}"
+          }
+        ]
+      },
+      {
+        "name": "Delete Task",
+        "request": {
+          "method": "DELETE",
+          "header": [],
+          "url": {
+            "raw": "{{baseUrl}}/tasks/1",
+            "host": ["{{baseUrl}}"],
+            "path": ["tasks", "1"]
+          },
+          "description": "Deletes a task by ID."
+        },
+        "response": [
+          {
+            "name": "Success",
+            "originalRequest": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/tasks/1",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks", "1"]
+              }
+            },
+            "status": "No Content",
+            "code": 204,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": ""
+          },
+          {
+            "name": "Not Found",
+            "originalRequest": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "{{baseUrl}}/tasks/999",
+                "host": ["{{baseUrl}}"],
+                "path": ["tasks", "999"]
+              }
+            },
+            "status": "Not Found",
+            "code": 404,
+            "_postman_previewlanguage": "json",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": "{\n  \"error\": \"Task not found\"\n}"
+          }
+        ]
+      }
+    ],
+    "variable": [
+      {
+        "key": "baseUrl",
+        "value": "http://localhost:8000/api",
+        "description": "Base URL for the Task Manager API"
+      }
+    ]
+  }

@@ -1,0 +1,137 @@
+@import './base.css';
+@import "tailwindcss";
+@import "tailwindcss/preflight"
+@tailwind utilities;
+
+body {
+  @apply bg-[#f0f8ff];
+}
+
+#app {
+  @apply w-[100%] xl:w-[50%] lg:w-[60%] md:w-[70%] sm:w-[80%] mx-auto;
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  /* #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  } */
+}
+
+/* TaskTable CSS */
+.pagination {
+  margin-top: 1rem;
+}
+
+.page-item.disabled .page-link {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.page-item.active .page-link {
+  font-weight: bold;
+}
+
+.search-bar {
+  margin-top: 15px;
+}
+
+.search-input {
+  width: 100%;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Global toast styles as fallback */
+.vt--error {
+  @apply bg-red-100 text-red-700 border-l-4 border-red-500 p-4 rounded-lg;
+}
+
+.vt--success {
+  @apply bg-green-100 text-green-700 border-l-4 border-green-500 p-4 rounded-lg;
+}
+
+.vt--info {
+  @apply bg-blue-100 text-blue-700 border-l-4 border-blue-500 p-4 rounded-lg;
+}
