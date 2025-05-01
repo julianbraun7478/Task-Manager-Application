@@ -14,7 +14,7 @@ A web-based task manager application built with Vue.js (frontend) and Laravel (b
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+git clone https://github.com/julianbraun7478/Task-Manager-Application.git
 cd task-manager
 ```
 
