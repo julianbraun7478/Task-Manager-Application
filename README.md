@@ -36,7 +36,6 @@ php artisan serve
 ```bash
 cd frontend
 npm install
-npm install axios vue3-toastify typescript vue-tsc --save-dev
 npm run dev
 ```
 
