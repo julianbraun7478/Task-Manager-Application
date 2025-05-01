@@ -49,7 +49,7 @@ php artisan test
 ```
 
 ## API Documentation
-- Import `task-manager-api.postman_collection.json` into Postman to explore API endpoints.
+- Import `doc/TaskManagerAPI.postman_collection.json` into Postman to explore API endpoints.
 - Base URL: `http://localhost:8000/api`
 - Endpoints: GET/POST/PUT/DELETE tasks.
 
@@ -66,7 +66,7 @@ php artisan test
   - `src/constants/`: Constants (`api.ts`, `toast.ts`)
   - `src/index.css`: Tailwind CSS
   - `src/main.js`: Vue app setup with Vue3-Toastify
-- `task-manager-api.postman_collection.json`: API documentation
+- `doc/TaskManagerAPI.postman_collection.json`: API documentation
 
 ## Features
 - **Frontend**:
