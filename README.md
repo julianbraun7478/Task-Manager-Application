@@ -1,6 +1,3 @@
-# Task-Manager-Application
-Create a simple web-based task manager application that allows users to add, edit, and delete tasks. The application should have both front-end and back-end components.
-
 # Task Manager Application
 
 A web-based task manager application built with Vue.js (frontend) and Laravel (backend), allowing users to add, edit, delete, and mark tasks as complete.
