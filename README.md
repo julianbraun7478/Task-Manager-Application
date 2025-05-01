@@ -3,7 +3,7 @@ Create a simple web-based task manager application that allows users to add, edi
 
 # Task Manager Application
 
-A web-based task manager application built with Vue.js (frontend) and Laravel (backend).
+A web-based task manager application built with Vue.js (frontend) and Laravel (backend), allowing users to add, edit, delete, and mark tasks as complete.
 
 ## Prerequisites
 - PHP >= 8.0
@@ -11,34 +11,37 @@ A web-based task manager application built with Vue.js (frontend) and Laravel (b
 - Node.js >= 16
 - MySQL
 - Laravel Valet (optional for local development)
+- TypeScript (for frontend)
 
 ## Setup Instructions
 
-1. Clone the repository
+1. **Clone the repository**
 ```bash
 git clone <repository-url>
+cd task-manager
 ```
 
-2. Backend Setup
+2. **Backend Setup**
 ```bash
 cd backend
 composer install
 cp .env.example .env
+# Configure .env with your MySQL database credentials (DB_DATABASE, DB_USERNAME, DB_PASSWORD)
 php artisan key:generate
-# Configure .env with your database credentials
 php artisan migrate
 php artisan serve
 ```
 
-3. Frontend Setup
+3. **Frontend Setup**
 ```bash
 cd frontend
 npm install
-npm install axios
+npm install axios vue3-toastify typescript vue-tsc --save-dev
 npm run dev
 ```
 
-4. Access the application at `http://localhost:5173`
+4. **Access the Application**
+- Open `http://localhost:5173` in your browser.
 
 ## Running Tests
 ```bash
@@ -47,8 +50,38 @@ php artisan test
 ```
 
 ## API Documentation
-API documentation is available in the Postman collection file: `task-manager-api.postman_collection.json`
+- Import `task-manager-api.postman_collection.json` into Postman to explore API endpoints.
+- Base URL: `http://localhost:8000/api`
+- Endpoints: GET/POST/PUT/DELETE tasks.
 
 ## Project Structure
 - `backend/`: Laravel backend application
+  - `app/Http/Controllers/TaskController.php`: API logic
+  - `app/Models/Task.php`: Task model
+  - `database/migrations/`: Database schema
+  - `tests/Feature/TaskControllerTest.php`: Unit tests
 - `frontend/`: Vue.js frontend application
+  - `src/App.vue`: Root component
+  - `src/components/`: Reusable components (`TaskList.vue`, `TaskItem.vue`, `TaskModal.vue`, `DeleteModal.vue`)
+  - `src/composables/`: Logic modules (`useTasks.ts`, `useTruncation.ts`)
+  - `src/constants/`: Constants (`api.ts`, `toast.ts`)
+  - `src/index.css`: Tailwind CSS
+  - `src/main.js`: Vue app setup with Vue3-Toastify
+- `task-manager-api.postman_collection.json`: API documentation
+
+## Features
+- **Frontend**:
+  - Displays tasks with titles, descriptions, and completion status.
+  - Supports adding, editing, deleting, and marking tasks as complete.
+  - Shows "more"/"less" links for descriptions exceeding two lines.
+  - Displays error, success, and info messages using toast notifications (Vue3-Toastify).
+  - Responsive design with Tailwind CSS v4.
+  - Client-side validation for task forms.
+  - Written in TypeScript with Composition API for type safety and modularity.
+- **Backend**:
+  - RESTful API with CRUD operations.
+  - MySQL storage with persistent data.
+  - Validation for task title and description.
+  - Error handling with appropriate HTTP status codes.
+  - Unit tests for all API endpoints.
+
